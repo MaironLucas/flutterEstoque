@@ -1,7 +1,7 @@
 class ItemModel {
   int id = 0;
   String classe = '';
-  double peso = 0;
+  String peso = '0';
   int qtd = 0;
   String ano = '2020';
 

@@ -16,12 +16,11 @@ abstract class _ItensController with Store {
   filterClass(String classe) async {
     final repository = ItemRepository();
     itens = new ObservableList<ItemModel>();
-    if (actualClass == 'todas') {
-      var data = await repository.filterAsClass('');
+    /*if (actualClass == 'todas') {
+      var data = await repository.filterAsClass("");
       itens.addAll(data);
-    } else {
-      var data = await repository.filterAsClass(classe);
-      itens.addAll(data);
-    }
+    } else {*/
+    var data = await repository.filterAsClass(classe);
+    itens.addAll(data);
   }
 }

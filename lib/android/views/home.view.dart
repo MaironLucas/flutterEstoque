@@ -22,13 +22,12 @@ class HomeView extends StatelessWidget {
       ),
       body: Container(
         alignment: Alignment.topRight,
-        margin: EdgeInsets.only(top: 10),
         color: Theme.of(context).accentColor,
         height: double.infinity,
         child: ListView(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
+              padding: EdgeInsets.only(left: 10, right: 10, top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[

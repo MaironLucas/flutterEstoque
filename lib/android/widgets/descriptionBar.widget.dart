@@ -1,29 +1,33 @@
+
 import 'package:flutter/material.dart';
 
 class DescriptionBar extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
       padding: EdgeInsets.only(left: 10, top: 10),
       child: Row(
         children: [
           Text(
             "Quantidade",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: width/16),
           ),
           SizedBox(
-            width: 72,
+            width: width/5.8,
           ),
           Text(
             "Classe",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: width/16),
           ),
           SizedBox(
-            width: 64,
+            width: width/6.1,
           ),
           Text(
             "Peso",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: width/16),
           ),
         ],
       ),

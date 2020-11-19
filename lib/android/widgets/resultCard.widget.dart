@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class ResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Container(
-      height: 80,
+      height: height / 8,
       width: double.infinity,
       padding: EdgeInsets.only(left: 10, right: 10),
       color: Colors.grey[200],
@@ -14,7 +17,7 @@ class ResultCard extends StatelessWidget {
             width: double.infinity,
             child: Text(
               "Total",
-              style: TextStyle(fontSize: 17),
+              style: TextStyle(fontSize: width / 16),
             ),
           ),
           Container(
@@ -25,14 +28,14 @@ class ResultCard extends StatelessWidget {
                 Text(
                   "30",
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: width / 8.7,
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
                 Text(
                   "60,1Kg",
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: width / 8.7,
                     color: Theme.of(context).primaryColor,
                   ),
                 ),

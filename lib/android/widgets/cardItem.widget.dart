@@ -1,40 +1,47 @@
+import 'package:estoque/models/item.model.dart';
 import 'package:flutter/material.dart';
 
 class CardItem extends StatelessWidget {
+  final ItemModel model;
+
+  CardItem({@required this.model});
+
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
       padding: EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: 50,
-            width: 90,
+            height: height / 12,
+            width: width / 3.9,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(width / 30),
               color: Theme.of(context).primaryColor,
             ),
             child: Row(
               children: [
                 Container(
-                  width: 30,
+                  width: width / 12,
                   alignment: Alignment.center,
                   child: FlatButton(onPressed: () {}, child: Text("+")),
                 ),
                 Container(
-                  width: 30,
+                  width: width / 12,
                   alignment: Alignment.center,
                   child: Text(
-                    "99",
+                    model.qtd.toString(),
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: width / 12,
                     ),
                   ),
                 ),
                 Container(
-                  width: 30,
-                  height: 50,
+                  width: width / 12,
                   alignment: Alignment.center,
                   child: FlatButton(onPressed: () {}, child: Text("-")),
                 ),
@@ -42,22 +49,22 @@ class CardItem extends StatelessWidget {
             ),
           ),
           Container(
-            width: 50,
+            width: width / 7,
             child: Text(
-              "BO1",
+              model.classe,
               style: TextStyle(
-                fontSize: 30,
+                fontSize: width / 12,
                 fontWeight: FontWeight.w700,
                 color: Colors.black87,
               ),
             ),
           ),
           Container(
-            width: 85,
+            width: width / 4.2,
             child: Text(
-              "60,1Kg",
+              model.peso,
               style: TextStyle(
-                fontSize: 30,
+                fontSize: width / 12,
                 fontWeight: FontWeight.w700,
                 color: Colors.black87,
               ),

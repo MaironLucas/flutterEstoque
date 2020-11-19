@@ -28,7 +28,7 @@ class ItemRepository {
     }
   }
 
-  Future<List<ItemModel>> getContacts() async {
+  Future<List<ItemModel>> getItens() async {
     try {
       final Database db = await _getDatabase();
       final List<Map<String, dynamic>> maps = await db.query(TABLE_NAME);
@@ -51,7 +51,7 @@ class ItemRepository {
     }
   }
 
-  Future<ItemModel> getContact(int id) async {
+  Future<ItemModel> getItem(int id) async {
     try {
       final Database db = await _getDatabase();
       final List<Map<String, dynamic>> maps = await db.query(
@@ -79,7 +79,7 @@ class ItemRepository {
       final List<Map<String, dynamic>> maps = await db.query(
         TABLE_NAME,
         where: 'classe LIKE ?',
-        whereArgs: ['$classe'],
+        whereArgs: ['%$classe%'],
       );
 
       return List.generate(
@@ -100,22 +100,28 @@ class ItemRepository {
     }
   }
 
-  Future<bool> isInList(String classe, double peso) async {
+  Future<ItemModel> isInList(String classe, String peso) async {
     try {
       final Database db = await _getDatabase();
       final List<Map<String, dynamic>> maps = await db.query(
         TABLE_NAME,
-        where: 'classe LIKE ?, peso LIKE ?',
-        whereArgs: ['$classe', '$peso'],
+        where: 'classe LIKE ? AND peso LIKE ?',
+        whereArgs: ['%$classe%', '%$peso%'],
       );
 
       if (maps.isEmpty)
-        return false;
+        return ItemModel(id: 0);
       else
-        return true;
+        return ItemModel(
+          id: maps[0]['id'],
+          classe: maps[0]['classe'],
+          peso: maps[0]['peso'],
+          qtd: maps[0]['qtd'],
+          ano: maps[0]['ano'],
+        );
     } catch (e) {
       print(e);
-      return false;
+      return ItemModel(id: 0);
     }
   }
 
