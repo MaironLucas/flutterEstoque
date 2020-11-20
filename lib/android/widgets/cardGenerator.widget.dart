@@ -3,19 +3,10 @@ import 'package:estoque/controllers/items.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class CardGenerator extends StatefulWidget {
-  @override
-  _CardGeneratorState createState() => _CardGeneratorState();
-}
+class CardGenerator extends StatelessWidget {
+  final ItensController controller;
 
-class _CardGeneratorState extends State<CardGenerator> {
-  final controller = ItensController();
-
-  @override
-  void initState() {
-    super.initState();
-    controller.filterClass("");
-  }
+  CardGenerator({@required this.controller});
 
   @override
   Widget build(BuildContext context) {

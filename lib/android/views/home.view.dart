@@ -6,8 +6,19 @@ import 'package:estoque/android/widgets/resultCard.widget.dart';
 import 'package:estoque/controllers/items.controller.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   final controller = ItensController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.filterClass("");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +42,7 @@ class HomeView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  FilterButton(),
+                  FilterButton(controller),
                   SizedBox(
                     width: 20,
                   ),
@@ -40,7 +51,7 @@ class HomeView extends StatelessWidget {
               ),
             ),
             DescriptionBar(),
-            CardGenerator(),
+            CardGenerator(controller: controller),
             ResultCard(),
           ],
         ),
