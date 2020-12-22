@@ -1,10 +1,15 @@
+import 'package:estoque/controllers/items.controller.dart';
 import 'package:estoque/models/item.model.dart';
+import 'package:estoque/repository/item.repository.dart';
 import 'package:flutter/material.dart';
 
 class CardItem extends StatelessWidget {
   final ItemModel model;
+  final ItensController controller;
 
-  CardItem({@required this.model});
+  CardItem({@required this.model, @required this.controller});
+
+  final _repository = ItemRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,13 @@ class CardItem extends StatelessWidget {
                 Container(
                   width: width / 12,
                   alignment: Alignment.center,
-                  child: FlatButton(onPressed: () {}, child: Text("+")),
+                  child: FlatButton(
+                      onPressed: () {
+                        model.qtd++;
+                        _repository.update(model);
+                        controller.filterClass("");
+                      },
+                      child: Text("+")),
                 ),
                 Container(
                   width: width / 12,
@@ -43,7 +54,13 @@ class CardItem extends StatelessWidget {
                 Container(
                   width: width / 12,
                   alignment: Alignment.center,
-                  child: FlatButton(onPressed: () {}, child: Text("-")),
+                  child: FlatButton(
+                      onPressed: () {
+                        model.qtd--;
+                        _repository.update(model);
+                        controller.filterClass("");
+                      },
+                      child: Text("-")),
                 ),
               ],
             ),

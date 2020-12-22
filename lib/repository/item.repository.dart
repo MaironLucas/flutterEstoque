@@ -125,6 +125,24 @@ class ItemRepository {
     }
   }
 
+  Future<List<String>> classExistents() async {
+    try {
+      List classes = ['vazio'];
+      int l = 0;
+      final db = await _getDatabase();
+      final List<Map<String, dynamic>> maps = await db.query(TABLE_NAME);
+      for (int i = 0; i < maps.length; i++) {
+        if (maps[i]['classe'] != classes[l]) {
+          classes.add(maps[i]['classe']);
+          l++;
+        }
+      }
+      return classes;
+    } catch (e) {
+      return List();
+    }
+  }
+
   Future update(ItemModel model) async {
     try {
       final Database db = await _getDatabase();

@@ -21,14 +21,16 @@ class ClassSelectionButton extends StatelessWidget {
             ),
             color: Theme.of(context).primaryColor,
           ),
-          FlatButton(
-            onPressed: () {},
-            child: Text(
-              model2.classe,
-              style: TextStyle(fontSize: 25),
-            ),
-            color: Theme.of(context).primaryColor,
-          ),
+          model2.classe != 'fim'
+              ? FlatButton(
+                  onPressed: () {},
+                  child: Text(
+                    model2.classe,
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  color: Theme.of(context).primaryColor,
+                )
+              : Container(),
         ],
       ),
     );

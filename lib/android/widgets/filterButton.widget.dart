@@ -27,20 +27,34 @@ class _FilterButtonState extends State<FilterButton> {
               height: 250,
               width: 20,
               child: Observer(
-                builder: (_) => ListView.builder(
-                  itemBuilder: (ctxt, index) {
-                    if (index == 0) {
+                builder: (_) {
+                  int extraIndex = -1;
+                  int tam = widget.controller.itens.length;
+                  return ListView.builder(
+                    itemBuilder: (ctxt, index) {
+                      if (index == 0) {
+                        return ClassSelectionButton(
+                            model1: ItemModel(classe: 'todas'),
+                            model2: widget.controller.itens[index]);
+                      } else if ((index < tam - 1) || tam % 2 != 0) {
+                        extraIndex += 2;
+                        if (extraIndex < tam - 1)
+                          return ClassSelectionButton(
+                              model1: widget.controller.itens[extraIndex],
+                              model2: widget.controller.itens[extraIndex + 1]);
+                        else
+                          return Container(
+                            height: 0.0,
+                          );
+                      }
                       return ClassSelectionButton(
-                          model1: ItemModel(classe: 'todas'),
-                          model2: widget.controller.itens[index]);
-                    } else {
-                      return ClassSelectionButton(
-                          model1: widget.controller.itens[index],
-                          model2: widget.controller.itens[index]);
-                    }
-                  },
-                  itemCount: widget.controller.itens.length,
-                ),
+                        model1: widget.controller.itens[index],
+                        model2: ItemModel(classe: 'fim'),
+                      );
+                    },
+                    itemCount: tam,
+                  );
+                },
               ),
             ),
           ),

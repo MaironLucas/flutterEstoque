@@ -18,6 +18,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     controller.filterClass("");
+    //controller.classExist();
   }
 
   @override
@@ -52,7 +53,9 @@ class _HomeViewState extends State<HomeView> {
             ),
             DescriptionBar(),
             CardGenerator(controller: controller),
-            ResultCard(),
+            ResultCard(
+              controller: controller,
+            ),
           ],
         ),
       ),

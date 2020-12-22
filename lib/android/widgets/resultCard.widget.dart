@@ -1,6 +1,12 @@
+import 'package:estoque/controllers/items.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ResultCard extends StatelessWidget {
+  final ItensController controller;
+
+  ResultCard({@required this.controller});
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -25,18 +31,22 @@ class ResultCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "30",
-                  style: TextStyle(
-                    fontSize: width / 8.7,
-                    color: Theme.of(context).primaryColor,
+                Observer(
+                  builder: (_) => Text(
+                    controller.quant.toString(),
+                    style: TextStyle(
+                      fontSize: width / 8.7,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
-                Text(
-                  "60,1Kg",
-                  style: TextStyle(
-                    fontSize: width / 8.7,
-                    color: Theme.of(context).primaryColor,
+                Observer(
+                  builder: (_) => Text(
+                    '${controller.peso}Kg',
+                    style: TextStyle(
+                      fontSize: width / 8.7,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
               ],
