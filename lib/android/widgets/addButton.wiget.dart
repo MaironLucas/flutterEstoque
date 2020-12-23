@@ -1,9 +1,14 @@
 import 'package:estoque/android/views/home.view.dart';
+import 'package:estoque/controllers/items.controller.dart';
 import 'package:estoque/models/item.model.dart';
 import 'package:estoque/repository/item.repository.dart';
 import 'package:flutter/material.dart';
 
 class AddButton extends StatefulWidget {
+  final ItensController controller;
+
+  AddButton({@required this.controller});
+
   @override
   _AddButtonState createState() => _AddButtonState();
 }
@@ -50,6 +55,7 @@ class _AddButtonState extends State<AddButton> {
   }
 
   onSucess() {
+    widget.controller.classExist();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => HomeView()),

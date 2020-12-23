@@ -75,6 +75,7 @@ class ItemRepository {
 
   Future<List<ItemModel>> filterAsClass(String classe) async {
     try {
+      if (classe == 'todas') classe = '';
       final Database db = await _getDatabase();
       final List<Map<String, dynamic>> maps = await db.query(
         TABLE_NAME,
@@ -127,18 +128,19 @@ class ItemRepository {
 
   Future<List<String>> classExistents() async {
     try {
-      List classes = ['vazio'];
-      int l = 0;
       final db = await _getDatabase();
-      final List<Map<String, dynamic>> maps = await db.query(TABLE_NAME);
-      for (int i = 0; i < maps.length; i++) {
-        if (maps[i]['classe'] != classes[l]) {
-          classes.add(maps[i]['classe']);
-          l++;
-        }
-      }
-      return classes;
+      final List<Map<String, dynamic>> maps = await db.rawQuery(
+        'SELECT DISTINCT classe FROM $TABLE_NAME',
+      );
+
+      return List.generate(
+        maps.length,
+        (i) {
+          return maps[i]['classe'];
+        },
+      );
     } catch (e) {
+      print('Erro na obtencao da lista de classes');
       return List();
     }
   }

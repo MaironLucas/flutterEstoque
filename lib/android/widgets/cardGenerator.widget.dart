@@ -1,8 +1,5 @@
-import 'package:estoque/android/views/home.view.dart';
 import 'package:estoque/android/widgets/cardItem.widget.dart';
 import 'package:estoque/controllers/items.controller.dart';
-import 'package:estoque/models/item.model.dart';
-import 'package:estoque/repository/item.repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -16,10 +13,9 @@ class CardGenerator extends StatefulWidget {
 }
 
 class _CardGeneratorState extends State<CardGenerator> {
-  deleteItem(ItemModel model) {
-    final _repository = ItemRepository();
-
-    _repository.delete(model.id).then((_) {});
+  deleteItem(int index) {
+    widget.controller.deleteFromDataBase(index);
+    widget.controller.classExist();
   }
 
   @override
@@ -47,13 +43,13 @@ class _CardGeneratorState extends State<CardGenerator> {
                 key: ValueKey(widget.controller.itens[index]),
                 onDismissed: (direction) {
                   setState(() {
-                    deleteItem(widget.controller.itens[index]);
-                    widget.controller.itens.removeAt(index);
+                    deleteItem(index);
                   });
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text("Item Removido")));
                 },
                 child: CardItem(
+                    index: index,
                     model: widget.controller.itens[index],
                     controller: widget.controller));
           },

@@ -17,8 +17,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    controller.filterClass("");
-    //controller.classExist();
+    controller.filterClass();
+    controller.classExist();
   }
 
   @override
@@ -47,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
                   SizedBox(
                     width: 20,
                   ),
-                  AddButton(),
+                  AddButton(controller: controller),
                 ],
               ),
             ),

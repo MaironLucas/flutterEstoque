@@ -1,15 +1,27 @@
 import 'package:estoque/controllers/items.controller.dart';
 import 'package:estoque/models/item.model.dart';
-import 'package:estoque/repository/item.repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class CardItem extends StatelessWidget {
   final ItemModel model;
   final ItensController controller;
+  final int index;
 
-  CardItem({@required this.model, @required this.controller});
+  CardItem(
+      {@required this.model, @required this.controller, @required this.index});
 
-  final _repository = ItemRepository();
+  increment() {
+    if (model.qtd < 99) {
+      controller.incrementQtd(model, index);
+    }
+  }
+
+  decrement() {
+    if (model.qtd > 1) {
+      controller.decrementQtd(model, index);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,20 +46,19 @@ class CardItem extends StatelessWidget {
                   width: width / 12,
                   alignment: Alignment.center,
                   child: FlatButton(
-                      onPressed: () {
-                        model.qtd++;
-                        _repository.update(model);
-                        controller.filterClass("");
-                      },
-                      child: Text("+")),
+                    onPressed: increment,
+                    child: Text("+"),
+                  ),
                 ),
                 Container(
                   width: width / 12,
                   alignment: Alignment.center,
-                  child: Text(
-                    model.qtd.toString(),
-                    style: TextStyle(
-                      fontSize: width / 12,
+                  child: Observer(
+                    builder: (_) => Text(
+                      controller.itens[index].qtd.toString(),
+                      style: TextStyle(
+                        fontSize: width / 12,
+                      ),
                     ),
                   ),
                 ),
@@ -55,12 +66,9 @@ class CardItem extends StatelessWidget {
                   width: width / 12,
                   alignment: Alignment.center,
                   child: FlatButton(
-                      onPressed: () {
-                        model.qtd--;
-                        _repository.update(model);
-                        controller.filterClass("");
-                      },
-                      child: Text("-")),
+                    onPressed: decrement,
+                    child: Text("-"),
+                  ),
                 ),
               ],
             ),

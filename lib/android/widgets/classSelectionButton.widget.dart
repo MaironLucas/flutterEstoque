@@ -1,10 +1,16 @@
-import 'package:estoque/models/item.model.dart';
+import 'package:estoque/controllers/items.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 
 class ClassSelectionButton extends StatelessWidget {
-  final ItemModel model1, model2;
+  final String classe1, classe2;
+  final ItensController controller;
 
-  ClassSelectionButton({@required this.model1, @required this.model2});
+  ClassSelectionButton(
+      {@required this.classe1,
+      @required this.classe2,
+      @required this.controller});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,21 +20,30 @@ class ClassSelectionButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              controller.changeClass(classe1);
+              controller.filterClass();
+            },
             child: Text(
-              model1.classe,
-              style: TextStyle(fontSize: 25),
+              classe1,
+              style: TextStyle(
+                fontSize: 25,
+              ),
             ),
-            color: Theme.of(context).primaryColor,
+            color: classe1 == controller.actualClass
+                ? Colors.yellow
+                : Theme.of(context).primaryColor,
           ),
-          model2.classe != 'fim'
+          classe2 != 'fim'
               ? FlatButton(
                   onPressed: () {},
                   child: Text(
-                    model2.classe,
+                    classe2,
                     style: TextStyle(fontSize: 25),
                   ),
-                  color: Theme.of(context).primaryColor,
+                  color: classe2 == controller.actualClass
+                      ? Colors.yellow
+                      : Theme.of(context).primaryColor,
                 )
               : Container(),
         ],

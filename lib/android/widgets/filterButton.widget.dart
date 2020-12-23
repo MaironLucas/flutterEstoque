@@ -1,6 +1,5 @@
 import 'package:estoque/android/widgets/classSelectionButton.widget.dart';
 import 'package:estoque/controllers/items.controller.dart';
-import 'package:estoque/models/item.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -28,28 +27,35 @@ class _FilterButtonState extends State<FilterButton> {
               width: 20,
               child: Observer(
                 builder: (_) {
+                  print(
+                      'O vetor de classes é ${widget.controller.existentsClasses}');
                   int extraIndex = -1;
-                  int tam = widget.controller.itens.length;
+                  int tam = widget.controller.existentsClasses.length;
                   return ListView.builder(
                     itemBuilder: (ctxt, index) {
                       if (index == 0) {
                         return ClassSelectionButton(
-                            model1: ItemModel(classe: 'todas'),
-                            model2: widget.controller.itens[index]);
+                            controller: widget.controller,
+                            classe1: 'todas',
+                            classe2: widget.controller.existentsClasses[index]);
                       } else if ((index < tam - 1) || tam % 2 != 0) {
                         extraIndex += 2;
                         if (extraIndex < tam - 1)
                           return ClassSelectionButton(
-                              model1: widget.controller.itens[extraIndex],
-                              model2: widget.controller.itens[extraIndex + 1]);
+                              controller: widget.controller,
+                              classe1: widget
+                                  .controller.existentsClasses[extraIndex],
+                              classe2: widget
+                                  .controller.existentsClasses[extraIndex + 1]);
                         else
                           return Container(
                             height: 0.0,
                           );
                       }
                       return ClassSelectionButton(
-                        model1: widget.controller.itens[index],
-                        model2: ItemModel(classe: 'fim'),
+                        controller: widget.controller,
+                        classe1: widget.controller.existentsClasses[index],
+                        classe2: 'fim',
                       );
                     },
                     itemCount: tam,
