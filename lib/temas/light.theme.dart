@@ -4,12 +4,11 @@ const brightness = Brightness.light;
 const primaryColor = const Color(0xFF00C569);
 const accentColor = const Color(0xFFFFFFFF);
 
-ThemeData appTheme() {
+ThemeData lightTheme() {
   return ThemeData(
-    brightness: Brightness.light, //Brightness.dark,
+    brightness: brightness, //Brightness.dark,
     primaryColor: primaryColor,
     accentColor: accentColor,
-
     textTheme: TextTheme(
       headline1: new TextStyle(fontFamily: "Forque"),
       bodyText1: new TextStyle(fontFamily: "Forque"),

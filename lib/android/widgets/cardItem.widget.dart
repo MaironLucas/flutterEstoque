@@ -35,39 +35,95 @@ class CardItem extends StatelessWidget {
         children: [
           Container(
             height: height / 12,
-            width: width / 3.9,
+            //width: width / 3.9,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(width / 30),
-              color: Theme.of(context).primaryColor,
-            ),
+                borderRadius: BorderRadius.circular(width / 30),
+                color: Theme.of(context).primaryColor,
+                border: Border.all(
+                  width: 3,
+                  color: Colors.black,
+                )),
             child: Row(
               children: [
                 Container(
                   width: width / 12,
                   alignment: Alignment.center,
-                  child: FlatButton(
-                    onPressed: increment,
-                    child: Text("+"),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(width / 30),
+                    /*
+                    border: Border.all(
+                      width: 3,
+                      color: Colors.black,
+                    ),
+                    */
                   ),
-                ),
-                Container(
-                  width: width / 12,
-                  alignment: Alignment.center,
-                  child: Observer(
-                    builder: (_) => Text(
-                      controller.itens[index].qtd.toString(),
-                      style: TextStyle(
-                        fontSize: width / 12,
+                  child: Center(
+                    child: FlatButton(
+                      onPressed: increment,
+                      child: Text(
+                        "+",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Container(
+                  width: 50, //width: width / 12,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    //borderRadius: BorderRadius.circular(width / 30),
+                    border: Border(
+                      left: BorderSide(
+                        color: Colors.black,
+                        width: 3.0,
+                      ),
+                      right: BorderSide(
+                        color: Colors.black,
+                        width: 3.0,
+                      ),
+                    ),
+                  ),
+                  child: Observer(
+                    builder: (_) => Text(
+                      controller.itens[index].qtd.toString(),
+                      style: TextStyle(
+                        fontSize: width / 12,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(width / 30),
+                    /*
+                    border: Border.all(
+                      width: 3,
+                      color: Colors.black,
+                    ),
+                    */
+                  ),
                   width: width / 12,
                   alignment: Alignment.center,
-                  child: FlatButton(
-                    onPressed: decrement,
-                    child: Text("-"),
+                  child: SizedBox.expand(
+                    child: FlatButton(
+                      disabledColor: Theme.of(context).primaryColor,
+                      onPressed: decrement,
+                      child: Text(
+                        "-",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -80,7 +136,7 @@ class CardItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: width / 12,
                 fontWeight: FontWeight.w700,
-                color: Colors.black87,
+                //color: Colors.black87,
               ),
             ),
           ),
@@ -91,7 +147,7 @@ class CardItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: width / 12,
                 fontWeight: FontWeight.w700,
-                color: Colors.black87,
+                //color: Colors.black87,
               ),
             ),
           ),

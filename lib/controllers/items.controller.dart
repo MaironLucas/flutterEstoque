@@ -67,8 +67,8 @@ abstract class _ItensController with Store {
     repository.update(model);
     itens2[index] = model;
     itens = itens2;
-    quant++;
-    peso += double.parse(model.peso);
+    quant--;
+    peso -= double.parse(model.peso);
   }
 
   @action

@@ -3,6 +3,7 @@ import 'package:estoque/controllers/items.controller.dart';
 import 'package:estoque/models/item.model.dart';
 import 'package:estoque/repository/item.repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AddButton extends StatefulWidget {
   final ItensController controller;
@@ -82,8 +83,33 @@ class _AddButtonState extends State<AddButton> {
               key: _formKey,
               child: ListBody(
                 children: <Widget>[
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Classe'),
+                    inputFormatters: [LengthLimitingTextInputFormatter(3)],
+                    decoration: InputDecoration(
+                      labelText: 'Classe',
+                      focusedBorder: OutlineInputBorder(
+                        //borderRadius: BorderRadius.circular(25.0),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        //borderRadius: BorderRadius.circular(25.0),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 2.0,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 3.0,
+                        ),
+                      ),
+                    ),
                     keyboardType: TextInputType.text,
                     onChanged: (value) => model.classe = value,
                     textCapitalization: TextCapitalization.characters,
@@ -94,8 +120,30 @@ class _AddButtonState extends State<AddButton> {
                       return null;
                     },
                   ),
+                  SizedBox(
+                    height: 15,
+                  ),
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Peso'),
+                    decoration: InputDecoration(
+                      labelText: 'Peso',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 2.0,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 3.0,
+                        ),
+                      ),
+                    ),
                     keyboardType: TextInputType.number,
                     onChanged: (value) => model.peso = value,
                     validator: (value) {
@@ -115,6 +163,7 @@ class _AddButtonState extends State<AddButton> {
               child: Text(
                 "Cancelar",
                 style: TextStyle(
+                  fontSize: 20,
                   color: Colors.red,
                 ),
               ),
@@ -124,6 +173,7 @@ class _AddButtonState extends State<AddButton> {
               child: Text(
                 "Adicionar",
                 style: TextStyle(
+                  fontSize: 20,
                   color: Theme.of(context).primaryColor,
                 ),
               ),

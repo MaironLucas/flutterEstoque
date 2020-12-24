@@ -13,10 +13,18 @@ class ResultCard extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        border: Border(
+          top: BorderSide(
+            color: Colors.black,
+            width: 3,
+          ),
+        ),
+      ),
       height: height / 8,
       width: double.infinity,
       padding: EdgeInsets.only(left: 10, right: 10),
-      color: Colors.grey[200],
       child: Column(
         children: [
           Container(
@@ -42,7 +50,7 @@ class ResultCard extends StatelessWidget {
                 ),
                 Observer(
                   builder: (_) => Text(
-                    '${controller.peso}Kg',
+                    '${controller.peso}  Kg',
                     style: TextStyle(
                       fontSize: width / 8.7,
                       color: Theme.of(context).primaryColor,

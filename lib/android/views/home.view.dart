@@ -1,9 +1,11 @@
+import 'package:estoque/android/views/settings.view.dart';
 import 'package:estoque/android/widgets/addButton.wiget.dart';
 import 'package:estoque/android/widgets/cardGenerator.widget.dart';
 import 'package:estoque/android/widgets/descriptionBar.widget.dart';
 import 'package:estoque/android/widgets/filterButton.widget.dart';
 import 'package:estoque/android/widgets/resultCard.widget.dart';
 import 'package:estoque/controllers/items.controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -28,13 +30,19 @@ class _HomeViewState extends State<HomeView> {
         title: Text("Gerenciador de estoque"),
         centerTitle: true,
         leading: FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => SettingsView(),
+                ));
+          },
           child: Icon(Icons.settings),
         ),
       ),
       body: Container(
         alignment: Alignment.topRight,
-        color: Theme.of(context).accentColor,
+        //color: Theme.of(context).accentColor,
         height: double.infinity,
         child: ListView(
           children: [
