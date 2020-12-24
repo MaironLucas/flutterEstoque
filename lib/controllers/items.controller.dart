@@ -82,6 +82,6 @@ abstract class _ItensController with Store {
 
   @action
   changeClass(String classe) {
-    actualClass = classe.toUpperCase();
+    actualClass = classe;
   }
 }

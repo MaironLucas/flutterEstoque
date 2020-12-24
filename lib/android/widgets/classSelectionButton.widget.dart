@@ -10,7 +10,7 @@ class ClassSelectionButton extends StatelessWidget {
   ClassSelectionButton(
       {@required this.classe1,
       @required this.classe2,
-      @required this.controller});
+      @required this.controller,});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +36,10 @@ class ClassSelectionButton extends StatelessWidget {
           ),
           classe2 != 'fim'
               ? FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.changeClass(classe2);
+                    controller.filterClass();
+                  },
                   child: Text(
                     classe2,
                     style: TextStyle(fontSize: 25),
