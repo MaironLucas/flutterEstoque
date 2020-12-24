@@ -16,40 +16,42 @@ class ClassSelectionButton extends StatelessWidget {
     return Container(
       height: 55,
       padding: EdgeInsets.all(5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          FlatButton(
-            onPressed: () {
-              controller.changeClass(classe1);
-              controller.filterClass();
-            },
-            child: Text(
-              classe1,
-              style: TextStyle(
-                fontSize: 25,
+      child: Observer(
+              builder: (_)=> Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FlatButton(
+              onPressed: () {
+                controller.changeClass(classe1);
+                controller.filterClass();
+              },
+              child: Text(
+                classe1,
+                style: TextStyle(
+                  fontSize: 25,
+                ),
               ),
+              color: classe1 == controller.actualClass
+                  ? Colors.yellow
+                  : Theme.of(context).primaryColor,
             ),
-            color: classe1 == controller.actualClass
-                ? Colors.yellow
-                : Theme.of(context).primaryColor,
-          ),
-          classe2 != 'fim'
-              ? FlatButton(
-                  onPressed: () {
-                    controller.changeClass(classe2);
-                    controller.filterClass();
-                  },
-                  child: Text(
-                    classe2,
-                    style: TextStyle(fontSize: 25),
-                  ),
-                  color: classe2 == controller.actualClass
-                      ? Colors.yellow
-                      : Theme.of(context).primaryColor,
-                )
-              : Container(),
-        ],
+            classe2 != 'fim'
+                ? FlatButton(
+                    onPressed: () {
+                      controller.changeClass(classe2);
+                      controller.filterClass();
+                    },
+                    child: Text(
+                      classe2,
+                      style: TextStyle(fontSize: 25),
+                    ),
+                    color: classe2 == controller.actualClass
+                        ? Colors.yellow
+                        : Theme.of(context).primaryColor,
+                  )
+                : Container(),
+          ],
+        ),
       ),
     );
   }
