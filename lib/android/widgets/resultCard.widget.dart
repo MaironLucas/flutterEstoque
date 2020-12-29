@@ -43,7 +43,7 @@ class ResultCard extends StatelessWidget {
                   builder: (_) => Text(
                     controller.quant.toString(),
                     style: TextStyle(
-                      fontSize: width / 8.7,
+                      fontSize: width / 9.2,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
@@ -52,7 +52,7 @@ class ResultCard extends StatelessWidget {
                   builder: (_) => Text(
                     '${controller.peso}  Kg',
                     style: TextStyle(
-                      fontSize: width / 8.7,
+                      fontSize: width / 9.2,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),

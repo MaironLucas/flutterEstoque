@@ -4,6 +4,7 @@ import 'package:estoque/models/item.model.dart';
 import 'package:estoque/repository/item.repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class AddButton extends StatefulWidget {
   final ItensController controller;
@@ -15,6 +16,12 @@ class AddButton extends StatefulWidget {
 }
 
 class _AddButtonState extends State<AddButton> {
+  final inputClasseMask = new MaskTextInputFormatter(
+      mask: '###', filter: {"#": RegExp(r'[A-Z0-9]')});
+  final inputPesoMask = new MaskTextInputFormatter(
+      mask: '#####', filter: {"#": RegExp(r'[0-9.]')});
+  final inputQtdMask =
+      new MaskTextInputFormatter(mask: '###', filter: {"#": RegExp(r'[0-9]')});
   final _formKey = new GlobalKey<FormState>();
   final _repository = ItemRepository();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -32,7 +39,7 @@ class _AddButtonState extends State<AddButton> {
     if (model2.id == 0) {
       create();
     } else {
-      model2.qtd++;
+      model2.qtd += model.qtd;
       update();
     }
   }
@@ -45,7 +52,6 @@ class _AddButtonState extends State<AddButton> {
 
   create() {
     model.ano = '2020';
-    model.qtd = 1;
     model.id = null;
 
     _repository.create(model).then((_) {
@@ -87,7 +93,8 @@ class _AddButtonState extends State<AddButton> {
                     height: 10,
                   ),
                   TextFormField(
-                    inputFormatters: [LengthLimitingTextInputFormatter(3)],
+                    cursorColor: Theme.of(context).primaryColor,
+                    inputFormatters: [inputClasseMask],
                     decoration: InputDecoration(
                       labelText: 'Classe',
                       focusedBorder: OutlineInputBorder(
@@ -124,6 +131,8 @@ class _AddButtonState extends State<AddButton> {
                     height: 15,
                   ),
                   TextFormField(
+                    inputFormatters: [inputPesoMask],
+                    cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
                       labelText: 'Peso',
                       focusedBorder: OutlineInputBorder(
@@ -150,6 +159,41 @@ class _AddButtonState extends State<AddButton> {
                       if (value.isEmpty) {
                         return 'Peso inválido';
                       }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 15),
+                  TextFormField(
+                    initialValue: '1',
+                    inputFormatters: [inputQtdMask],
+                    cursorColor: Theme.of(context).primaryColor,
+                    decoration: InputDecoration(
+                      labelText: 'Quantidade',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 2.0,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 3.0,
+                        ),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) => model.qtd = int.parse(value),
+                    validator: (value) {
+                      if (value.isEmpty || value == '0') {
+                        return 'Quantidade inválida';
+                      }
+                      model.qtd = int.parse(value);
                       return null;
                     },
                   ),

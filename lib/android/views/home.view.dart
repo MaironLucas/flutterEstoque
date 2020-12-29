@@ -25,46 +25,50 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Gerenciador de estoque"),
-        centerTitle: true,
-        leading: FlatButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (context) => SettingsView(),
-                ));
-          },
-          child: Icon(Icons.settings),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: MediaQuery.of(context).size.height / 11.8,
+          title: Text("Gerenciador de estoque"),
+          centerTitle: true,
+          leading: FlatButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => SettingsView(),
+                  ));
+            },
+            child: Icon(Icons.settings),
+          ),
         ),
-      ),
-      body: Container(
-        alignment: Alignment.topRight,
-        //color: Theme.of(context).accentColor,
-        height: double.infinity,
-        child: ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  FilterButton(controller),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  AddButton(controller: controller),
-                ],
+        body: Container(
+          alignment: Alignment.topRight,
+          //color: Theme.of(context).accentColor,
+          height: double.infinity,
+          child: ListView(
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 10, right: 10, top: 7),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    FilterButton(controller),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    AddButton(controller: controller),
+                  ],
+                ),
               ),
-            ),
-            DescriptionBar(),
-            CardGenerator(controller: controller),
-            ResultCard(
-              controller: controller,
-            ),
-          ],
+              DescriptionBar(),
+              CardGenerator(controller: controller),
+              ResultCard(
+                controller: controller,
+              ),
+            ],
+          ),
         ),
       ),
     );

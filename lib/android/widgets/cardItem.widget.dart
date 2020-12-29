@@ -12,7 +12,7 @@ class CardItem extends StatelessWidget {
       {@required this.model, @required this.controller, @required this.index});
 
   increment() {
-    if (model.qtd < 99) {
+    if (model.qtd < 999) {
       controller.incrementQtd(model, index);
     }
   }
