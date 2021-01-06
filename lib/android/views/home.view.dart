@@ -37,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
               Navigator.push(
                   context,
                   CupertinoPageRoute(
-                    builder: (context) => SettingsView(),
+                    builder: (context) => SettingsView(controller: controller),
                   ));
             },
             child: Icon(Icons.settings),

@@ -24,6 +24,21 @@ mixin _$ItensController on _ItensController, Store {
     });
   }
 
+  final _$safraAtualAtom = Atom(name: '_ItensController.safraAtual');
+
+  @override
+  int get safraAtual {
+    _$safraAtualAtom.reportRead();
+    return super.safraAtual;
+  }
+
+  @override
+  set safraAtual(int value) {
+    _$safraAtualAtom.reportWrite(value, super.safraAtual, () {
+      super.safraAtual = value;
+    });
+  }
+
   final _$itensAtom = Atom(name: '_ItensController.itens');
 
   @override
@@ -147,9 +162,21 @@ mixin _$ItensController on _ItensController, Store {
   }
 
   @override
+  dynamic trocarSafra(int safra) {
+    final _$actionInfo = _$_ItensControllerActionController.startAction(
+        name: '_ItensController.trocarSafra');
+    try {
+      return super.trocarSafra(safra);
+    } finally {
+      _$_ItensControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 actualClass: ${actualClass},
+safraAtual: ${safraAtual},
 itens: ${itens},
 existentsClasses: ${existentsClasses},
 quant: ${quant},

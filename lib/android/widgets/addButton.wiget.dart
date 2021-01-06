@@ -51,7 +51,8 @@ class _AddButtonState extends State<AddButton> {
   }
 
   create() {
-    model.ano = '2020';
+    print(widget.controller.safraAtual);
+    model.ano = widget.controller.safraAtual.toString();
     model.id = null;
 
     _repository.create(model).then((_) {

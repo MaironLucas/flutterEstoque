@@ -10,6 +10,9 @@ abstract class _ItensController with Store {
   String actualClass = 'todas';
 
   @observable
+  int safraAtual = DateTime.now().year;
+
+  @observable
   ObservableList<ItemModel> itens = new ObservableList<ItemModel>();
 
   @observable
@@ -35,7 +38,7 @@ abstract class _ItensController with Store {
     peso = 0;
     final repository = ItemRepository();
     itens = new ObservableList<ItemModel>();
-    var data = await repository.filterAsClass(actualClass);
+    var data = await repository.filterAsClass(actualClass, safraAtual);
     itens.addAll(data);
     itens.forEach((element) {
       quant += element.qtd;
@@ -83,5 +86,10 @@ abstract class _ItensController with Store {
   @action
   changeClass(String classe) {
     actualClass = classe;
+  }
+
+  @action
+  trocarSafra(int safra) {
+    safraAtual = safra;
   }
 }

@@ -1,23 +1,23 @@
 import 'package:estoque/controllers/items.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 
 class ClassSelectionButton extends StatelessWidget {
   final String classe1, classe2;
   final ItensController controller;
 
-  ClassSelectionButton(
-      {@required this.classe1,
-      @required this.classe2,
-      @required this.controller,});
+  ClassSelectionButton({
+    @required this.classe1,
+    @required this.classe2,
+    @required this.controller,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 55,
       padding: EdgeInsets.all(5),
       child: Observer(
-              builder: (_)=> Row(
+        builder: (_) => Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             FlatButton(

@@ -1,60 +1,43 @@
+import 'package:estoque/android/widgets/themePicker.widget.dart';
+import 'package:estoque/android/widgets/yearSelector.widget.dart';
+import 'package:estoque/controllers/items.controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingsView extends StatelessWidget {
+  final ItensController controller;
+
+  SettingsView({@required this.controller});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(50),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 100,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Dia",
-                        style: TextStyle(
-                          fontSize: 50,
-                        ),
-                      ),
-                      Icon(
-                        Icons.brightness_high,
-                      ),
-                    ],
-                  ),
+        padding: const EdgeInsets.all(20),
+        child: ListView(
+          children: [
+            Center(
+              child: Text(
+                'Selecione uma safra',
+                style: TextStyle(
+                  fontSize: 20,
                 ),
               ),
-              Container(
-                height: 100,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Noite",
-                        style: TextStyle(
-                          fontSize: 50,
-                        ),
-                      ),
-                      Icon(
-                        Icons.brightness_low,
-                      ),
-                    ],
-                  ),
+            ),
+            YearSelector(controller: controller),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Text(
+                'Selecione um tema',
+                style: TextStyle(
+                  fontSize: 20,
                 ),
               ),
-            ],
-          ),
+            ),
+            ThemePicker(),
+          ],
         ),
       ),
     );

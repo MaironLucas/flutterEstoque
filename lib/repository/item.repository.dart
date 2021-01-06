@@ -73,14 +73,14 @@ class ItemRepository {
     }
   }
 
-  Future<List<ItemModel>> filterAsClass(String classe) async {
+  Future<List<ItemModel>> filterAsClass(String classe, int safra) async {
     try {
       if (classe == 'todas') classe = '';
       final Database db = await _getDatabase();
       final List<Map<String, dynamic>> maps = await db.query(
         TABLE_NAME,
-        where: 'classe LIKE ?',
-        whereArgs: ['%$classe%'],
+        where: 'classe LIKE ? AND ano LIKE ?',
+        whereArgs: ['%$classe%', '%$safra%'],
       );
 
       return List.generate(

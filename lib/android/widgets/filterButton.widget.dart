@@ -27,8 +27,6 @@ class _FilterButtonState extends State<FilterButton> {
               width: 20,
               child: Observer(
                 builder: (_) {
-                  print(
-                      'O vetor de classes é ${widget.controller.existentsClasses}');
                   int extraIndex = -1;
                   int tam = widget.controller.existentsClasses.length;
                   return ListView.builder(
