@@ -64,10 +64,8 @@ class _AddButtonState extends State<AddButton> {
 
   onSucess() {
     widget.controller.classExist();
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomeView()),
-    );
+    widget.controller.filterClass();
+    Navigator.pop(context);
   }
 
   onError() {
