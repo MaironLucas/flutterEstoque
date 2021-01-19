@@ -1,4 +1,3 @@
-import 'package:estoque/android/views/home.view.dart';
 import 'package:estoque/controllers/items.controller.dart';
 import 'package:estoque/models/item.model.dart';
 import 'package:estoque/repository/item.repository.dart';
@@ -97,13 +96,11 @@ class _AddButtonState extends State<AddButton> {
                     decoration: InputDecoration(
                       labelText: 'Classe',
                       focusedBorder: OutlineInputBorder(
-                        //borderRadius: BorderRadius.circular(25.0),
                         borderSide: BorderSide(
                           color: Theme.of(context).primaryColor,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        //borderRadius: BorderRadius.circular(25.0),
                         borderSide: BorderSide(
                           color: Theme.of(context).primaryColor,
                           width: 2.0,

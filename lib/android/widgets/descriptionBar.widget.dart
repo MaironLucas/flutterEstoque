@@ -14,14 +14,14 @@ class DescriptionBar extends StatelessWidget {
             style: TextStyle(fontSize: width / 16),
           ),
           SizedBox(
-            width: width / 5.8,
+            width: width / 5.4,
           ),
           Text(
             "Classe",
             style: TextStyle(fontSize: width / 16),
           ),
           SizedBox(
-            width: width / 6.1,
+            width: width / 6.9,
           ),
           Text(
             "Peso",

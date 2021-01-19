@@ -45,7 +45,6 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: Container(
           alignment: Alignment.topRight,
-          //color: Theme.of(context).accentColor,
           height: double.infinity,
           child: ListView(
             children: [

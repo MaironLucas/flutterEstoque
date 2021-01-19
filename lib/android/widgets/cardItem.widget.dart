@@ -35,7 +35,6 @@ class CardItem extends StatelessWidget {
         children: [
           Container(
             height: height / 12,
-            //width: width / 3.9,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(width / 30),
                 color: Theme.of(context).primaryColor,
@@ -46,20 +45,15 @@ class CardItem extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: width / 12,
+                  width: width / 13,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(width / 30),
-                    /*
-                    border: Border.all(
-                      width: 3,
-                      color: Colors.black,
-                    ),
-                    */
                   ),
-                  child: Center(
+                  child: SizedBox.expand(
                     child: FlatButton(
+                      disabledColor: Theme.of(context).primaryColor,
                       onPressed: increment,
                       child: Text(
                         "+",
@@ -73,11 +67,10 @@ class CardItem extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 50, //width: width / 12,
+                  width: width / 8,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
-                    //borderRadius: BorderRadius.circular(width / 30),
                     border: Border(
                       left: BorderSide(
                         color: Colors.black,
@@ -102,14 +95,8 @@ class CardItem extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(width / 30),
-                    /*
-                    border: Border.all(
-                      width: 3,
-                      color: Colors.black,
-                    ),
-                    */
                   ),
-                  width: width / 12,
+                  width: width / 13,
                   alignment: Alignment.center,
                   child: SizedBox.expand(
                     child: FlatButton(
@@ -136,7 +123,6 @@ class CardItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: width / 12,
                 fontWeight: FontWeight.w700,
-                //color: Colors.black87,
               ),
             ),
           ),
@@ -147,7 +133,6 @@ class CardItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: width / 12,
                 fontWeight: FontWeight.w700,
-                //color: Colors.black87,
               ),
             ),
           ),

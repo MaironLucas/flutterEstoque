@@ -6,10 +6,9 @@ const accentColor = const Color(0xFFFFFFFF);
 
 ThemeData appTheme() {
   return ThemeData(
-    brightness: Brightness.light, //Brightness.dark,
+    brightness: Brightness.light,
     primaryColor: primaryColor,
     accentColor: accentColor,
-
     textTheme: TextTheme(
       headline1: new TextStyle(fontFamily: "Forque"),
       bodyText1: new TextStyle(fontFamily: "Forque"),
