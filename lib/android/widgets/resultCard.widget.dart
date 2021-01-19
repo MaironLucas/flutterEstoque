@@ -22,7 +22,7 @@ class ResultCard extends StatelessWidget {
           ),
         ),
       ),
-      height: height / 8,
+      height: height / 7,
       width: double.infinity,
       padding: EdgeInsets.only(left: 10, right: 10),
       child: Column(

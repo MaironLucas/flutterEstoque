@@ -8,22 +8,24 @@ class YearSelector extends StatelessWidget {
   YearSelector({@required this.controller});
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(width / 36),
         color: Theme.of(context).primaryColor,
       ),
-      height: 60,
+      height: width / 6.5,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           int data = DateTime.now().year - index;
           return Observer(
             builder: (_) => Container(
-              padding: EdgeInsets.all(3),
-              width: 110,
+              padding: EdgeInsets.all(width / 70),
+              width: width / 3.27,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(width / 36),
                 color: data == controller.safraAtual
                     ? Colors.yellow
                     : Theme.of(context).primaryColor,
@@ -31,7 +33,7 @@ class YearSelector extends StatelessWidget {
               child: FlatButton(
                 child: Text(
                   '$data',
-                  style: TextStyle(fontSize: 40),
+                  style: TextStyle(fontSize: width / 9.5),
                 ),
                 onPressed: () {
                   controller.trocarSafra(data);

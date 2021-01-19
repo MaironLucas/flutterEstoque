@@ -10,25 +10,27 @@ class SettingsView extends StatelessWidget {
   SettingsView({@required this.controller});
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(width / 24),
         child: ListView(
           children: [
             Center(
               child: Text(
                 'Selecione uma safra',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: width / 17,
                 ),
               ),
             ),
             YearSelector(controller: controller),
             SizedBox(
-              height: 20,
+              height: width / 24,
             ),
-            Center(
+            /*Center(
               child: Text(
                 'Selecione um tema',
                 style: TextStyle(
@@ -36,7 +38,7 @@ class SettingsView extends StatelessWidget {
                 ),
               ),
             ),
-            ThemePicker(),
+            ThemePicker(),*/
           ],
         ),
       ),
